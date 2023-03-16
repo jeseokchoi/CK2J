@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+	"-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.itbank.model.ProductDTO" alias="product"/>
+		<typeAlias type="com.itbank.model.Product_optDTO" alias="product_opt"/>
+		<typeAlias type="com.itbank.model.Product_t_imgDTO" alias="product_t_img"/>
+		<typeAlias type="com.itbank.model.ReviewDTO" alias="review"/>
+		<typeAlias type="com.itbank.model.ReviewReplyDTO" alias="reviewReply"/>
+		
+		<typeAlias type="com.itbank.model.UserDTO" alias="user"/>
+		<typeAlias type="com.itbank.model.DeliverAddressDTO" alias="address"/>
+		<typeAlias type="com.itbank.model.UserOrderDTO" alias="userOrder"/>
+		<typeAlias type="com.itbank.model.UserOrderDetailDTO" alias="UserOrderDetail"/>
+		<typeAlias type="com.itbank.model.CartDTO" alias="cart"/>
+		<typeAlias type="com.itbank.model.NoticeDTO" alias="board"/>
+		<typeAlias type="com.itbank.model.QnaDTO" alias="qna"/>
+		<typeAlias type="com.itbank.model.QnaReplyDTO" alias="reply"/>
+		<typeAlias type="com.itbank.model.ForPurchaseDTO" alias="ForPurchase"/>
+		
+		<!-- nonuser 추가 2/21 -->
+		<typeAlias type="com.itbank.model.Nonuser_orderDTO" alias="nonuser_order"/>
+		<typeAlias type="com.itbank.model.Nonuser_orderDetailJoinDTO" alias="nonuser_join"/>
+		<typeAlias type="com.itbank.model.NonuserOrder_detailDTO" alias="nonuserOrderDetail"/>
+		<typeAlias type="com.itbank.model.NonuserOrder_returnDTO" alias="nonuser_return"/>
+		
+		<typeAlias type="com.itbank.model.UserOrder_returnDTO" alias="user_return"/>
+		<typeAlias type="com.itbank.model.SalesChartDTO" alias="salesChart"/>
+		
+	</typeAliases>
+	
+</configuration>

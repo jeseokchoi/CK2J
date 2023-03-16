@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+@charset "utf-8";
+
+.hidden{
+	display: none;
+}
+div.wrap {
+	width: 1000px;
+	margin: auto;
+}
+div#qna_title {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+div#qna_title > h2 {
+	display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+div.write_form1 {
+	display: flex;
+    width: 1000px;
+    border: 1px solid #D8D8D8;
+}
+div.write_title {
+	padding: 15px 60px;
+    border-right: 1px solid #D8D8D8;
+}
+div.write_select {
+	padding: 13px 1px 0px 5px;
+}
+div.write_select > select {
+	margin: 1px 1px 1px 1px;
+    padding: 1px 200px 1px 1px;
+    border-color: #D8D8D8;
+}
+div.write_form2 {
+	display: flex;
+    width: 1000px;
+    border: 1px solid #D8D8D8;
+}
+div.writer_title {
+	padding: 15px 53px;
+    border-right: 1px solid #D8D8D8;
+}
+div.writer {
+	padding: 12px 5px;
+}
+div.writer > input[type="text"] {
+    border-color: #D8D8D8;
+}
+div.note-editor.note-frame .note-editing-area .note-editable {
+	height: 300px;
+	max-height: 300px;
+	min-height: 300px;
+}
+div.write_form3 {
+	display: flex;
+    width: 1000px;
+    border: 1px solid #D8D8D8;
+    margin-top: -20px;
+}
+div.secret_title {
+	padding: 15px 40px;
+    border-right: 1px solid #D8D8D8;
+}
+div.secret {
+	padding: 13px 1px 0px 5px;
+}
+a {
+	color: #808080 !important;
+}
+div.write_submit {
+	display: inline-block;
+	width: 100%;
+}
+div.write_submit > p {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+div.write_submit > p > input[type="submit"] {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.write_submit > p > input[type="submit"]:hover {
+	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.write_submit > p > a > button {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px; 
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.write_submit > p > a > button:hover {
+	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+

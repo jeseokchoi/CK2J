@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.repository.SalesChartDAO">
+	<select id="getOrderList" resultType="salesChart" parameterType="string">
+		<choose>
+			<when test='"recentWeek".equalsIgnoreCase(category)'>
+				select DU.dt, order_total_price
+				from
+					(SELECT to_char(sysdate-6 + LEVEL - 1, 'YYYY-MM-DD') AS dt
+				FROM dual
+					CONNECT BY LEVEL <![CDATA[<=]]>
+						(sysdate-(sysdate-6) + 1)) DU
+					left outer join
+						(select to_char(order_date,'YYYY-MM-DD') as dt, sum (order_total_price) as order_total_price
+							from user_order
+							where order_date > sysdate - 6
+							group BY to_char(order_date,'YYYY-MM-DD')) DA
+						on DU.dt = DA.dt
+				order by DU.dt
+			</when>
+			<when test='"recentMonth".equalsIgnoreCase(category)'>
+				select DU.dt, order_total_price
+				from
+    				(SELECT to_char(sysdate-365 + LEVEL - 1, 'YYYY-MM-DD') AS dt
+   				FROM dual 
+					CONNECT BY LEVEL <![CDATA[<=]]> (sysdate-(sysdate-365) + 1)) DU
+					left outer join 
+						(select to_char(order_date,'YYYY-MM-DD') as dt, sum (order_total_price) as order_total_price  
+							from user_order 
+							where order_date > sysdate - 365
+							group BY to_char(order_date,'YYYY-MM-DD')) DA
+						on DU.dt = DA.dt
+				where du.dt like to_char(sysdate,'YYYY-MM')||'%'
+				order by DU.dt
+			</when>
+			<when test='"monthly".equalsIgnoreCase(category)'>
+				select DU.dt, sum(order_total_price) as order_total_price
+				from
+				    (SELECT TO_CHAR(add_months(sysdate, -level), 'YYYY-MM') AS dt
+                FROM dual
+                CONNECT BY level <![CDATA[<=]]> 12) DU
+					left outer join 
+						(select to_char(order_date,'YYYY-MM') as dt, sum (order_total_price) as order_total_price  
+							from user_order 
+							where order_date > sysdate - 365
+							group BY to_char(order_date,'YYYY-MM')) DA
+						on DU.dt = DA.dt
+				group by DU.dt
+				order by DU.dt
+			</when>
+			<otherwise>
+				select to_char(order_date,'YYYY') as dt, sum (order_total_price) as order_total_price  
+				from user_order 
+				group BY to_char(order_date,'YYYY')
+				order by dt
+			</otherwise>
+		</choose>
+
+	</select>
+
+
+</mapper>

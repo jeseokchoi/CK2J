@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.ReviewDAO">
+
+<insert id="insertReview" parameterType="review">
+	insert into product_review (product_opt_idx,user_id,rate,content) values (#{product_opt_idx}, #{user_id}, #{rate}, #{content})
+</insert>
+
+<select id="selectList" parameterType="hashmap" resultType="review">
+select 
+	pr.product_review_idx, 
+	pr.product_opt_idx,
+	po.product_color,
+	po.product_size, 
+	p.product_idx, 
+	pr.rate, 
+	pr.user_id, 
+	pr.writing_date,
+	pr.content,
+	pr.delete_check,
+	rr.review_reply_idx, 
+	rr.writing_date as reply_writing_date, 
+	rr.content as reply_content 
+from 
+	product_review pr
+
+	join 
+		product_opt po
+			on 
+		pr.product_opt_idx = po.product_opt_idx
+	left outer join 
+		review_reply rr
+			on 
+		pr.product_review_idx = rr.product_review_idx
+	join 
+		product p
+			on 
+		po.product_idx = p.product_idx
+where 
+	p.product_idx =#{product_idx} and PR.delete_check = 'n'
+order by 
+	pr.product_review_idx desc
+
+</select>
+
+<select id="selectOne" parameterType="int" resultType="review">
+	select pr.product_review_idx,pr.product_opt_idx,p.product_idx,pr.rate,pr.user_id,pr.writing_date,pr.content,pr.delete_check from product_review pr
+JOIN product_opt po
+on pr.product_opt_idx = po.product_opt_idx
+join product p 
+on po.product_idx = p.product_idx
+where pr.product_review_idx = #{product_review_idx}
+</select>
+
+<update id="updateReview" parameterType="review">
+	update product_review set rate=#{rate}, content=#{content} where product_review_idx = #{product_review_idx}
+	
+</update>
+
+<update id="delete" parameterType="int">
+	update product_review set delete_check ='y' where product_review_idx = #{product_review_idx}
+</update>
+
+<select id="getAll" parameterType="hashmap" resultType="review">
+	select pr.product_review_idx, pr.product_opt_idx, pr.user_id, pr.rate, pr.content, pr.writing_date, pr.delete_check,
+    rr.review_reply_idx, rr.content as reply_content, rr.writing_date as reply_writing_date
+		 from product_review pr
+		left outer join review_reply rr
+		on pr.product_review_idx = rr.product_review_idx	
+		order by pr.product_review_idx desc   
+		offset #{offset} rows
+		fetch first #{perPage} rows only
+		
+</select>
+
+<select id="getReviewCount" resultType="int">
+	select count(*) from product_review
+</select>
+
+<insert id="insertReviewReply" parameterType="reviewReply">
+	insert into review_reply (product_review_idx,content) values (#{product_review_idx},#{content})
+</insert>
+<select id="getReplyOne" parameterType="int" resultType="reviewReply">
+	select * from review_reply where product_review_idx = #{product_review_idx}
+</select>
+<update id="updateReviewReply" parameterType="reviewReply">
+	update review_reply set content = #{content} where review_reply_idx = #{review_reply_idx}
+</update>
+
+<delete id="deleteReviewReply" parameterType="int">
+	delete review_reply where review_reply_idx = #{review_reply_idx}
+</delete>
+
+</mapper>

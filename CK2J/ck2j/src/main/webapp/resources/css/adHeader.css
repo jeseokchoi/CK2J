@@ -1,0 +1,207 @@
+@charset "utf-8";
+
+body {
+		margin: 0;
+		background-color: #edf0f5;
+	}
+	header {
+		position:fixed;
+		top:0;
+		z-index:10;
+		display: flex;
+		align-items: center;
+		background-color: #2d3539;
+		height: 50px;
+		width: 100%;
+		color: white;
+		font-size: 20px;
+		padding-left: 30px;
+	}
+	main {
+		width:100%;
+		height: 100%;
+		display:flex;
+		margin-top: 50px;
+	}
+	aside{
+		width: 200px;
+		background-color: #445163;
+		color: #fff;
+		padding: 50px 0;
+	}
+	li {
+		list-style: none;
+		padding-left: 0;
+	}
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+	a:hover {
+		cursor: pointer;
+	}
+	ul.up {
+		padding-left: 0;
+		text-align: center;
+	}
+	ul.up > li {
+		padding: 20px 0;
+		border-bottom: 1px solid #dadada;
+		border-top: 1px solid #dadada;
+		margin: -1px;
+		position: relative;
+	}
+	ul.up > li:hover{
+		cursor: pointer;
+	}
+	li > ul {
+		height: 0;				
+        overflow: hidden; 
+		transition-duration: 0.5s;
+		padding-left: 20px;
+	}
+	li >ul.selected {
+		height: auto;
+		transition-duration: 0.5s;
+	}
+	ul.up > li > ul > li {
+		margin: 10px;
+		margin-left: 25px;
+		text-align: left;
+		font-size: 15px;
+	}
+	ul.up > li > ul > li:hover {
+		text-decoration: underline;
+	}
+	section {
+		width:100%; 
+	}
+	div.box {
+		border: 1px solid #dbdde2;
+		width: 98%;
+		padding: 10px;
+		background-color: white;
+	}
+	div.title {
+		font-size: 20px;
+	}
+	div.itemBox {
+		display: flex;
+		justify-content: center;
+	}
+	div.productItems {
+		border: 2px solid black;
+		width: 90%;
+	}
+	div.productItems >div {
+		display: flex;
+	}
+	div.item{
+		border: 1px solid black;
+		margin: -1px;
+		text-align: center;
+	}
+	div.itemHeader {
+		background-color: #dadada;
+	}
+	div.item > div {
+		padding: 5px 10px;
+	}
+	div.item:hover {
+		cursor: pointer;
+		background-color: #dadada;
+	}
+	div.productItems div.item div:nth-child(1){
+		flex: 0.5;
+	}
+	div.productItems div.item div:nth-child(2),
+	div.productItems div.item div:nth-child(4){
+		flex: 1;
+	}
+	div.productItems div.item div:nth-child(3){
+		flex: 2;
+	}
+	div.productItems div.item div:nth-child(5){
+		flex: 1;
+	}
+	div.userOrderItems div.item div{
+		flex: 1;
+	}
+	div.gender {
+		display: none;
+	}
+	.hidden{
+		display: none!important;
+	}
+	div.itemHeader {
+		position: sticky;
+		top:0;
+		z-index: 3;
+	}
+	div.productItems{
+		height: 1000px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	div.userOrderItems{
+		height: 1000px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	.hide {
+		visibility: hidden;
+	}
+	button.showTBtn{
+		width: 100px;
+	}
+	button:hover {
+		cursor: pointer;
+	}
+	div.productItems div.item > div.product_t_img {
+	    display: flex;
+	    position:relative;
+    	flex-direction: column;
+    	align-items: center
+	}
+	div.deleteProductDiv{
+		position: absolute;
+		right: 0;
+		z-index: 1;
+	}
+	div.productItems div.item > div.product_t_img > img {
+		margin-top: 5px;
+	}
+	.onlyFlex {
+		display: flex;
+	}
+	.itemHeader > div:hover {
+		background-color: #ccc;
+	}
+	div.userOrderItems > div{
+		display: flex;
+	}
+	div.userOrderItems {
+		border: 2px solid black;
+	    width: 90%;
+	}
+	div.detailItem {
+		display: flex;
+		width: 100%;
+		margin: auto;
+	}
+	div.detailHeader {
+		background-color: #dadada;
+		font-weight: bold;
+	}
+	div.modal-body{
+		width: 80%;
+		margin: auto;
+	}
+	div.modal-body > div.modal-bodyDetail {
+		border: 2px solid black;
+	}
+	div.detailItem > div{
+		flex: 1;
+		padding: 5px 10px;
+		text-align: center;
+	}

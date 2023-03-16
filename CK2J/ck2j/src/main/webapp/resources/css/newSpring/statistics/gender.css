@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+    section{
+	width: 500px;
+	margin: auto;
+ 	text-align:center; 
+/* 	background-color: #dadada; */
+ 	display:flex;
+	
+	
+	/*새봄 추가 */
+	margin-top: 5%;
+	padding-bottom: 3%;
+	}
+	
+	th,td{
+	width: 300px;
+	height: 50px;
+	padding: 0;
+	padding: 0;
+ 	text-align: center; 
+	}
+	
+
+	.chart {
+	
+		padding: 20px;
+		border-radius: 10px;
+		width: 500px;
+		margin: 40px auto;
+		
+	}
+	
+	.doughnutChart{
+	
+	
+	
+	}
+	.doughnutTable{
+		padding-top:10%;
+		margin-right: 0px;
+		margin-left: 7%;
+	
+	}
+	
+	.main-section{
+		margin-left: 0px;
+		
+	}
+  

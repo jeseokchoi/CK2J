@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#find_id{
+ width: 1000px;
+ margin: auto;
+ }
+ .find_id_head{
+ text-align: center;
+ min-height: 30px;
+ margin-bottom: 50px;
+ }
+ .find_id_head h1{
+ font-size: 40px;
+ }
+ .find_id_head h4{
+ font-size: 15px;
+ color: #a9a9a9;
+ }
+ .find_id_form{
+ text-align: center;
+ }
+ .find_id_form strong{
+	display: inline-block;
+ 	width: 125px;
+ 	font-size: 17px;
+ }
+ .find_id_form input{
+ width: 250px;
+ height: 30px;
+ }
+ .find_id_submit input{
+ width: 350px;
+ background-color: #333333;
+ margin: auto 341px;
+ color: white;
+ height: 50px;
+ }

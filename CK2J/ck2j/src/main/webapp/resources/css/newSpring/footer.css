@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+	#footer {
+    
+    text-align: center;
+    position: relative;
+ 	display:flex; 
+ 	top: 20%; 
+ 	
+ 	height: 33%;
+ 	margin: auto;
+ 	
+ 	
+	padding: 10px;
+	align-content: center;
+	width: 1200px;
+		
+	}
+	
+	.inner{
+		margin: auto;
+	}
+	
+	.mainFooter{
+		font-size: 13px;
+	}
+	
+	.mainFooterPhone{
+		font-size: 20px;
+		color: black;
+		font-size: 30px; 
+	}
+.FooterText1{
+	display: block;
+}
+.FooterText2{
+	display: inline;
+}
+
+
+.FooterAdress{
+	display: block;
+	color: gray;
+	margin-bottom: 3%;
+}
+
+.KGlogo{
+	margin-top: 2%;
+	color: gray;
+}
+

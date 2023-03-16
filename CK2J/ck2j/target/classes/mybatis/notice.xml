@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.NoticeDAO">
+
+	<select id="selectNotice" resultType="board" parameterType="hashmap">
+		select * from
+			notice order by notice_idx desc
+			offset #{offset} rows
+			fetch first #{perPage} rows only
+	</select>
+	
+	<select id="selectNotiView" resultType="board">
+		select * from notice where notice_idx = #{notice_idx}
+	</select>
+	
+	<select id="selectSearch" parameterType="string" resultType="board">
+		select * from notice
+			where
+				notice_title like '%${keyword}%'
+	</select>
+	
+	<insert id="addInsert" parameterType="board">
+		insert into notice
+		 		values
+		 			(notice_seq.nextval,
+		 			#{notice_writer},
+		 			#{notice_title},
+		 			#{notice_content},
+		 			sysdate,
+		 			#{show_check}
+		 			)
+	</insert>
+	
+	<select id="getModify" resultType="board">
+		select * from notice where notice_idx = #{notice_idx}
+	</select>
+	
+	<update id="listModify" parameterType="board">
+		update notice
+			set
+				notice_title = #{notice_title},
+				notice_writer = #{notice_writer},
+				notice_content = #{notice_content},
+				show_check = #{show_check}
+			where
+				notice_idx = #{notice_idx}
+				
+	</update>
+	
+	<delete id="listDelete" parameterType="board">
+		delete notice where notice_idx = #{notice_idx}
+	</delete>
+	
+	<select id="notiCountPage" resultType="int">
+		select count (*) from notice
+	</select>
+	
+</mapper>	
+

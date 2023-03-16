@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.itbank.repository.SearchDAO">
+	
+
+		
+	<select id="search_List" resultType="product" parameterType="hashmap">
+		select
+			 P.product_code, 
+   			 P.product_idx,
+   			 P.product_name,
+   			 P.product_price,
+   			 T.product_t_img as product_t_imgOne
+        from product P
+        
+        join product_t_img T
+            on P.product_idx = T.product_idx
+            
+        where 
+            P.product_name like '%${keyword}%'
+ 		  	
+	  	<if test="product_code != null">
+ 				 AND product_code like ''||#{product_code}||'%'
+	  	</if> 
+	  	
+	  	order by
+	  	<if test="sort_method == null or sort_method == 0">P.product_idx desc</if>  
+	  	<if test="sort_method == 1">P.product_price asc</if>  
+	  	<if test="sort_method == 2">P.product_price desc</if>  
+ 		
+ 		offset ${offset} rows
+ 		fetch first ${perPage} rows only
+	</select>
+		
+		
+<!-- 		<select id="getUser" resultType="java.util.HashMap" parameterType="java.util.HashMap"> -->
+<!--  		 SELECT * FROM USER_TABLE -->
+<!--   				WHERE USER_STATE = ‘ACTIVE’ -->
+<!--  		 <if test="USER_ID != null"> -->
+<!--    				 AND USER_ID = #{USER_ID} -->
+<!--  		  </if> -->
+<!-- 		</select> -->
+				
+	<select id="getCount" resultType="int">
+		select count(product_idx) from product where product_name like '%${keyword}%' and delete_check='n'
+	</select>
+	
+	<select id="selectList" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_name like '%'||#{keyword}||'%' and delete_check='n'
+			order by product_idx desc
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	<select id="select_t_img" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_name like '%'||#{keyword}||'%' and product_t_img like '%_t_1.%'
+		order by P.product_idx desc
+		
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	
+	<select id="selectListSortByLowPrice" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_name like '%'||#{keyword}||'%'
+			order by product_price
+			
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	
+	
+	<select id="select_t_imgSortByLowPrice" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_name like '%'||#{keyword}||'%' and product_t_img like '%_t_1.%'
+		order by P.product_price
+	</select>
+	
+	<select id="selectListSortByhighPrice" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_name like '%'||#{keyword}||'%'
+			order by product_price desc
+			
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	<select id="select_t_imgSortByhighPrice" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_name like '%'||#{keyword}||'%' and product_t_img like '%_t_1.%'
+		order by P.product_price desc
+	</select>
+	
+		
+	
+	
+	
+	
+	</mapper>

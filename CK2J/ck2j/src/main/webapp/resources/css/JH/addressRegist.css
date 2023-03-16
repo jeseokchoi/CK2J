@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+#addressRegist{
+		width:1080px;
+		height: 500px;
+		margin: auto;
+	}
+	.address_regist_head{
+	width: 900px;
+	margin: auto;
+	text-align: center;
+	}
+	.address_regist_head h1{
+	font-size: 29px;
+	}
+	.address_regist_head h4{
+	font-size: 15px;
+	}
+	.addressRegist_body{
+	width: 900px;
+	margin: auto;
+	}
+	.addressRegist_body table{
+	width: 900px;
+	border-collapse: collapse;
+	border: 1px solid #eeeeee;
+	
+	}
+	.addressRegist_body th{
+	width: 100px;
+	height: 20px;
+	border: 1px solid #eeeeee;
+	background-color: #fafafa;
+	
+	}
+	.addressRegist_body td{
+	width: 800px;
+	height: 20px;
+	border: 1px solid #eeeeee;
+	}
+	.address_regist_button{
+	    text-align: center;
+	    }
+	.address_regist_button > input{
+	width: 200px;
+    height: 30px;
+    background-color: #333333;
+    color: white;
+	}

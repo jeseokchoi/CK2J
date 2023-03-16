@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+/*새봄 스타일 전체 수정 회원 비회원 통일  03/03*/
+ 	
+/*  	.orderList{  */
+/*  	width: 1000px;  */
+/*  	margin: auto;  */
+/*  	background-color: #dadada; */
+ 	
+/*  	margin-top: 6%; */
+/* 	padding: 1% 2% 1% 2%; */
+	
+/*  	} */
+	
+/* 	.orderDetailB { */
+	
+/* 		border: 1px solid gray; */
+/* 		margin: 0px; */
+/* 		padding: 10px; */
+/* 		text-align: center; */
+/* 		align-content: center; */
+/* 		width: 522px; */
+/* 		margin-left: 30%; */
+		
+/* 	} */
+	
+/* 	tr td{		 */
+/* 		width: 300px; */
+/* 		height: 50px; */
+/* 		padding: 0; */
+/* 		padding: 0; */
+/* 		text-align: center; */
+	
+		
+/* 	} */
+
+/* 상품 값 불러오는 CSS ▲ -----------------------------------------------------*/
+ 	
+ 	.orderDetailAa{ 
+	
+	width: 1000px; 
+ 	margin: auto; 
+ 	border: 1px solid #dadada;
+ 	margin-top: 6%;
+	padding: 1% 2% 3% 2%;
+		
+		
+	}
+	
+	.orderDetailAb{
+	
+	width: 1000px; 
+ 	margin: auto; 
+ 	border: 1px solid #dadada;
+ 	margin-top: 6%;
+	padding: 1% 2% 3% 2%;
+	
+	}
+
+
+
+/*---------------------------------------*/
+
+	.search_Modal{
+	align-content: center;
+	align-items: center;
+
+
+}
+
+.search_button1{
+	margin-top: 20px;
+	align-content: center;
+	align-items: center;
+	
+	
+	font-size: 12px;
+	width:110px;
+	height:35px;
+	color: #424242;
+	background-color: #F2F2F2;
+	border: 1px solid #dadada;
+	padding: 10px 8px;
+	border-radius: 3px;
+	
+	margin-bottom: 20px;
+}
+
+.search_button1:hover {
+		
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	
+}
+
+
+
+
+.search_button2{
+	margin-top: 30px;
+	align-content: center;
+	align-items: center;
+	
+	
+	font-size: 12px;
+	width:110px;
+	height:35px;
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	padding: 10px 8px;
+	border-radius: 3px;
+}
+
+
+.search_button2:hover {
+		
+	color: #424242;
+	background-color: #F2F2F2;
+	border: 1px solid #dadada;
+	
+}
+
+
+.search_button3{
+	margin-top: 20px;
+	align-content: center;
+	align-items: center;
+	
+	
+	font-size: 12px;
+	width:110px;
+	height:35px;
+	color: #424242;
+	background-color: #F2F2F2;
+	border: 1px solid #dadada;
+	padding: 10px 8px;
+	border-radius: 3px;
+	
+	margin-bottom: 20px;
+}
+
+.search_button3:hover {
+		
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+	
+}
+
+
+#list{
+
+margin-top: 5%;
+
+}
+
+
+.errorText{
+	margin: 0px;
+	text-align: center;
+	margin-left: 31%;
+}
+
+.errorBlue{
+display: block;
+	font-size: 16px;
+	color: #58ACFA;
+
+}
+
+.errorGray{
+	font-size: 13px;
+	color: #A4A4A4;
+
+}
+
+.searchSelect{
+	
+	width: 350px;
+	height: 30px;
+	border: 1px solid #dadada;
+	margin-left: 10px;
+
+}
+
+.searchKeyword{
+	width: 350px;
+	height: 30px;
+	border: 1px solid #dadada;
+	margin-left: 10px;
+}
+
+.hidden {
+/* 	opacity: 0; */
+/* 	z-index: -1; */
+	visibility: hidden;
+	transition-duration: 1s;
+	
+}
+
+#search_Modal{
+	margin:auto;
+	height: 200px;
+	width: 400px;
+/* 	border: 1px solid hotpink; */
+/* 	transition: all 1s; */
+	transition: all .25s ease-in-out;
+}
+.displaynoneSearch{
+	display:none;
+	height: 0!important;
+/* 	transition: all 1s; */
+	transition: all .25s ease-in-out;
+}
+
+
+/* 3/4 새봄 스타일  다시 변경 -------------------------------!!!!!!!!!!!!!!!---- */ 				
+
+
+.userBtn_R_E{
+ 
+/* 	border: 1px solid blue;  */
+	display:flex;
+	justify-content: flex-end; /* flex 안에서만 사용 가능*/
+	margin-right: 5%;
+}
+
+.search_button3{
+ margin-left: 5px;
+	}
+	
+.orderList .titleArea{
+	width: 1000px; 
+	margin-left: 5%;
+		
+	}
+		
+
+
+

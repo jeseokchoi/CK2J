@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+div.wrap {
+	width: 1000px;
+	margin: auto;
+}
+div#qna_title {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+table#qnaList{
+	width: 800px;
+    padding: 25px; 
+    margin: 0 100px;
+    border-collapse: collapse;
+}
+table#qnaList > thead > tr {
+	border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#qnaList > thead > tr > th{
+	width: 700px;
+	padding: 10px 10px;
+}
+table#qnaList > tbody > tr{
+	text-align: center;
+	height: 40px;
+	border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#qnaList > tbody > tr:hover {
+	background-color: #E6E6E6;
+}
+table#qnaList > tbody > tr > td{
+	padding: 5px 10px;
+}
+table#qnaList > tbody > tr > td:nth-child(2) {
+	text-align: left;
+}
+div.pageNumber {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+div.pageNumber > a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+div.pageNumber > a:hover, a:focus{
+	color: black;
+	background-color: #E6E6E6;
+	transition: all 0.4s ease-in-out;
+}

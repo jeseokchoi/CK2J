@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+div.wrap {
+    width: 1000px;
+    margin: auto;
+}
+div#noti_title {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+div#root{
+    width: 800px;
+    margin: auto;
+}
+div.notiView_title{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.notiView_title > .noti_title{
+    margin: 15px 50px 10px 50px;
+}
+div.notiView_title > .noti_title2{
+    margin: 10px 50px 10px 50px;
+    font-size: 20px;
+}
+div.notiView_writer{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.notiView_writer > .noti_writer{
+    margin: 10px 50px 10px 50px;
+}
+div.notiView_writer > .noti_writer2{
+    margin: 10px 50px 10px 35px;
+}
+div.notiView_date{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.notiView_date > .noti_date{
+    margin: 10px 50px 10px 50px;
+}
+div.notiView_date > .noti_date2{
+    margin: 10px 50px 10px 35px;
+}
+div.notiView_content{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+    border-bottom: 1px solid #D8D8D8;
+}
+div.notiView_content > .noti_content{
+    margin: 50px 60px;
+    font-size: 16px;
+}
+div.sb{
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+div.sb > .adnoti_submit{
+    display: flex;
+}
+div.sb > .adnoti_return > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.sb > .adnoti_return > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.sb > .adnoti_submit > .adnoti_modiBtn > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+    margin-right: 5px;
+}
+div.sb > .adnoti_submit > .adnoti_modiBtn > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.sb > .adnoti_submit > .adnoti_delBtn > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.sb > .adnoti_submit > .adnoti_delBtn > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}

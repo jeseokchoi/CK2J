@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+#pwd_result{
+	width: 1080px;
+	margin: auto;
+	}
+	.pwd_result_head h1{
+	text-align: center;
+    height: 57px;
+    font-size: 40px;
+    }
+    .pwd_result_head h4{
+    text-align: center;
+    font-size: 17px;
+    }
+    .pwd_result_input{
+ 	display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+	.pwd_result_input strong{
+	margin-right: 20px;
+    font-size: 17px;
+	}
+	.pwd_result_input input{
+ 	width: 250px;
+ 	height: 30px;
+ 	display: flex;
+    justify-content: center;
+    align-items: center;
+ 	}
+	.pwd_result_submit input{
+	width: 250px;
+    margin: auto 415px;
+    height: 40px;
+    background: #333333;
+    color: white;
+    border-radius: 10px;
+	}
+	.pwd_result_submit input:hover {
+			background-color: #eeeeee;
+			color: #333333;
+			transition: 0.2s;
+			cursor: pointer;
+	}

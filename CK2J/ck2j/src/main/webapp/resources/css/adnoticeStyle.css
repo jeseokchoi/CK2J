@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+div.wrap {
+	width: 1200px;
+	margin: auto;
+}
+div#adNoti_title {
+	display: flex;
+	width: 550px;
+	margin: auto;
+	justify-content: center;
+}
+table#adNoticeList{
+	width: 1000px;
+    padding: 25px; 
+    margin: auto;
+    border-collapse: collapse;
+}
+table#adNoticeList > thead > tr {
+	border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#adNoticeList > thead > tr > th{
+	width: 70px;
+	padding: 10px 10px;
+}
+table#adNoticeList > tbody > tr{
+	text-align: center;
+	height: 40px;
+	border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+table#adNoticeList > tbody > tr:hover {
+	background-color: #E6E6E6;
+}
+table#adNoticeList > tbody > tr > td{
+	padding: 5px 10px;
+}
+table#adNoticeList > tbody > tr > td:nth-child(2) {
+	text-align: left;
+}
+div.pageNumber {
+	display: flex;
+	width: 550px;
+	margin: 20px auto;
+	justify-content: center;
+}
+div.pageNumber > a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+div.pageNumber > a:hover, a:focus{
+	color: black;
+	background-color: #E6E6E6;
+	transition: all 0.4s ease-in-out;
+}
+div.sb {
+	display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: auto;
+}
+div.sb > div > form > p > input[type="submit"] {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 1px 0px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #333333;
+    cursor: pointer;
+    margin: 0px 0px 3px 0px;
+}
+div.sb > div > form > p > input[type="submit"]:hover {
+	color: black;
+	border: 1px solid #e8e8e8;
+	background-color: white;
+	transition: all 0.4s ease-in-out
+}
+div.adnoti_write > a > button {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 1px 0px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #333333;
+    cursor: pointer;
+    margin: 0px 0px 3px 0px;
+}
+div.adnoti_write > a > button:hover {
+	color: black;
+	border: 1px solid #e8e8e8;
+	background-color: white;
+	transition: all 0.4s ease-in-out
+}
+div.adnoti_write {
+	display: flex;
+	align-items: center;
+}

@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+.reply{
+       width: 800px;
+       margin: auto;
+       text-align: left;
+        }
+        .reviewReply{
+         width: 400px;
+         margin: auto;
+         margin-left: 150px;
+         background-color: #f1f3f5;
+         margin-top: 10px;
+        }
+               
+        .reply_writer{
+        display: flex;
+	    justify-content: space-between;
+	    align-items: center;
+	    width: 130px;
+	    font-size: 17px;
+        }
+        .reviewLeft span{
+        width: 150px;
+        display: inline-flex;
+        font-weight: bold;
+        font-size: 15px;
+        }
+      	.review_content{
+      	width: 400px;
+    
+      	}
+        .review_size span{
+        font-size: 14px;
+        
+        }
+         span.review_date{
+        color: #b9bbbf;
+        width: 150px;
+    	font-size: 11px;
+        }
+        .reply_writer span{
+            font-size: 13px;
+            color: #b9bbbf;
+        }
+ 		.review_hr{
+ 			width: 1000px;
+ 			background: #eeeeee;
+ 			height:1px;
+    		border:0;
+    		margin-top: 10px;
+ 		}
+ 		.review_view{
+ 		margin-top: 20px;
+ 		display: flex;
+ 		margin-bottom: 20px;
+ 		}	
+ 	.reviewRight .modify{
+ 	width:50px;
+ 	height: 30px;
+    background-color: #eeeeee;
+    color: black;
+ 	border: 1px solid #eeeeee;
+ 	border-radius: 10px;
+ 		}
+ 		
+ 	.reviewRight .delete{
+ 	width:50px;
+ 	height: 30px;
+    background-color: #333333;
+  	color: white;
+  	border-radius: 10px;
+ 	}
+ 	
+ 	.reviewRight .modify:hover{
+ 	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+ 	}
+ 	.reviewRight .delete:hover {
+	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+	}
+	.review_reply_content{
+	margin-top: 11px;
+	font-size: 14px;
+	}

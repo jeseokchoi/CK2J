@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+      
+      .homeWindow{
+      
+         width: 100%;
+         height:100%;
+/*          border: 1px solid pink;  */
+         display: flex;
+      
+      }
+      
+      .mapAPI{
+         width: 100%;
+         height:100%;
+/*          border: 1px solid pink;  */
+         display: flex;
+         
+      
+      }
+      .mapAPI_left{
+      
+          width: 35%;
+          position:relative;
+          padding-left: 14%;  
+          padding-right: 10%;
+          padding-top: 18%;
+          height:100%;
+          display: block;
+         
+         
+      } 
+      
+      .mapAPI_right{
+      	width: 60%;
+      
+      }
+      .map{
+
+         display:flex;
+
+      }
+
+   
+      .mapText1{
+         font-size:30px; 
+         transition: transform 1.0s ease,opacity 1.0s ease;
+         font-weight: bold;
+      
+      }
+   
+      .mapText2{
+         font-size: 17px;
+         font:'Poppins','Noto Sans KR','맑은 고딕','Malgun Gothic',Verdana,Dotum,AppleGothic,sans-serif;
+      
+      }
+
+   

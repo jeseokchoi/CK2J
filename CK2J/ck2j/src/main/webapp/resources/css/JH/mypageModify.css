@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+#mypage_modify{
+	width: 1080px;
+	margin: auto;
+	}
+	.mypage_modify_head{
+	width: 200px;
+	margin: auto;
+	}
+	.mypage_modify_head h1{
+	font-size: 40px;
+	font-weight: bold;
+	}
+	.mypage_modify_head h4{
+	font-size: 17px;
+    width: 300px;
+    margin: auto;
+    margin-bottom: 20px;
+	}
+	#mypage_modify form{
+	
+	width: 900px;
+	margin: auto;
+	}
+	#mypage_modify strong{
+	text-align: center;
+	font-size: 17px;
+	display: inline-block;
+	width: 150px;
+	}
+    #mypage_modify span{
+        font-size: 10px;
+    }
+      #mypage_modify tr{
+      height: 40px;
+    }
+	#mypage_modify th{
+    width: 200px;
+    height: 30px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-bottom-width: 0;
+    font-size: 14px;
+	}
+    #mypage_modify td{
+        width: 700px;
+        border: 1px solid #eeeeee;
+    }
+    .mypage_modify_submit{
+        width: 250px;
+        height: 30px;
+        background-color: #333333;
+        color: white;
+        margin: auto 250px;
+        margin-top: 20px;
+    }
+    .pw21Check{
+    font-size: 13px;
+    }
+    .pw2Check{
+    font-size: 13px;
+    }
+    .withdraw{
+ 	text-align: right;
+    }
+    .withdraw a{
+    width: 100px;
+    height: 30px;
+    margin-right: 90px;
+    display: inline-flex;
+    background: #eeeeee;
+    color: #a1a1a1;
+    justify-content: center;
+    align-items: center;
+    }

@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+	#find_pwd{
+ width: 1000px;
+ margin: auto;
+ }
+ .find_pwd_head{
+ text-align: center;
+ min-height: 30px;
+ margin-bottom: 50px;
+ }
+ .find_pwd_head h1{
+ font-size: 40px;
+ }
+
+ .find_pwd_form{
+ text-align: center;
+ font-size: 17px;
+ }
+ .find_pwd_form strong{
+	display: inline-block;
+ 	width: 125px;
+ 	font-size: 17px;
+ }
+ .find_pwd_form input{
+ width: 250px;
+ height: 30px;
+ }
+ .find_pwd_submit input{
+ width: 350px;
+ background-color: #333333;
+ margin: auto 341px;
+ color: white;
+ height: 50px;
+ }

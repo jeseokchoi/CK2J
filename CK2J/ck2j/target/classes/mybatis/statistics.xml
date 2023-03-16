@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.repository.StatisticsDAO">
+
+<!-- <select id="selectGender" resultMap="int" parameterType="String"> -->
+<!-- 	select * from userTable  -->
+<!-- 		where  -->
+<!--          user_role = 'user' -->
+<!--         and -->
+<!--          user_gender = user_gender -->
+<!-- </select> -->
+
+
+<select id="selectGender" resultType="user" parameterType="user">
+	
+	select user_gender, count(*) as cnt 
+		from (select * 
+	      	from userTable 
+	      		where user_role = 'user' AND  user_gender = user_gender) A 
+	GROUP BY user_gender ORDER BY cnt DESC
+
+</select>
+
+<!-- <select id="selectAge" resultType="user" parameterType="user"> -->
+<!-- 	select USER_BIRTH, count(*) as cnt from -->
+<!--     (select  -->
+<!--         trunc(((extract(year from sysdate) - extract(year from USER_BIRTH )) / 10)) * 10 as USER_BIRTH  -->
+<!--             from userTable -->
+<!--            where user_role = 'user' ) -->
+<!--     group by USER_BIRTH -->
+
+
+<!-- </select> -->
+
+<select id="selectAge" resultType="user" parameterType="user">
+select age, count(*) as cnt from
+    (select
+        trunc(((extract(year from sysdate) - extract(year from user_birth )) / 10)) * 10 as age 
+            from userTable
+           where user_role = 'user' )
+    group by age
+
+</select>
+
+
+
+</mapper>

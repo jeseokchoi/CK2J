@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.QnaDAO">
+
+	<select id="selectQnaAll" resultType="qna" parameterType="hashmap">
+		select Q.*,QR.qna_reply_idx as reply_check from
+		qna Q
+		left outer join qna_reply QR
+		on Q.qna_idx = QR.qna_idx
+		order by Q.qna_idx desc
+		offset #{offset} rows
+		fetch first #{perPage} rows only
+	</select>
+	
+	<select id="selectQnaView" resultType="qna">
+		select Q.*,QR.qna_reply_idx as reply_check from
+		qna Q
+		left outer join qna_reply QR
+		on Q.qna_idx = QR.qna_idx
+		where Q.qna_idx = #{qna_idx}
+<!-- 		select * from qna where qna_idx = #{qna_idx} -->
+	</select>
+	
+	<select id="searchQna" parameterType="string" resultType="qna">
+		select * from qna
+			where
+				qna_title like '%${keyword}%'
+	</select>
+	
+	<insert id="addInsert" parameterType="qna">			<!--0217 insert에 날짜 받는 값을 변경함-->
+			insert into qna
+		 		values
+		 			(qna_seq.nextval,
+		 			#{user_id},
+		 			#{qna_password},
+		 			#{qna_title},
+		 			#{qna_content},
+		 			sysdate,
+		 			#{qna_secret}
+		 			)
+	</insert>
+	
+	<select id="check" parameterType="qna" resultType="qna">
+		select * from qna where qna_idx = #{qna_idx} and qna_password = #{qna_password}
+	</select>
+	
+	<select id="getCountPage" resultType="int">
+		select count (*) from qna
+	</select>
+	<!-- 02.22 -->
+	<select id="selectReplyList" parameterType="int" resultType="reply">
+		select *
+		from qna_reply
+        where qna_idx = #{qna_idx}
+        order by qna_reply_idx
+	</select>
+	
+	<insert id="insertReply" parameterType="reply">
+		insert into qna_reply
+				(qna_idx, content)
+			values (#{qna_idx}, #{content})
+	</insert>
+	
+	<update id="getModify" parameterType="reply">
+		update qna_reply 
+   			set 
+        		content = #{content}
+    		where
+        		qna_idx = #{qna_idx}
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		delete qna_reply where qna_reply_idx = #{qna_reply_idx}
+	</delete>
+		<delete id="deleteReply2" parameterType="int">
+		delete qna_reply where qna_idx = #{qna_idx}
+	</delete>
+	
+	
+	<select id="getModdify" resultType="qna">
+		select * from qna where qna_idx = #{qna_idx}
+	</select>
+	
+	<update id="getMmodify" parameterType="qna">
+		update qna
+			set
+				qna_title = #{qna_title},
+				qna_content = #{qna_content},
+				qna_secret = #{qna_secret},
+				qna_password = #{qna_password}
+			where
+				qna_idx = #{qna_idx}
+	</update>
+	
+	<delete id="deleteQna" parameterType="qna">
+		delete qna where qna_idx = #{qna_idx}
+	</delete>
+
+	
+	<select id="checkReply" parameterType="int" resultType="int">
+		select count(*) from qna_reply where qna_idx = #{qna_idx}
+	</select>
+</mapper>

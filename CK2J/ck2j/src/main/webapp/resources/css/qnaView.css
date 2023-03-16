@@ -1,0 +1,161 @@
+@charset "utf-8";
+
+.hidden {
+	display: none;
+}
+div.wrap {
+    width: 1000px;
+    margin: auto;
+}
+div#qna_title {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+div#root{
+    width: 770px;
+    margin: auto;
+}
+div.qnaView_title{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_title > .qna_title{
+    margin: 15px 50px 10px 50px;
+}
+div.qnaView_title > .qna_title2{
+    margin: 10px 50px 10px 50px;
+    font-size: 20px;
+}
+div.qnaView_writer{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_writer > .qna_writer{
+    margin: 10px 50px 10px 50px;
+}
+div.qnaView_writer > .qna_writer2{
+    margin: 10px 50px 10px 35px;
+}
+div.qnaView_date{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_date > .qna_date{
+    margin: 10px 50px 10px 50px;
+}
+div.qnaView_date > .qna_date2{
+    margin: 10px 50px 10px 35px;
+}
+div.qnaView_content{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+    border-bottom: 1px solid #D8D8D8;
+}
+div.qnaView_content > .qna_content{
+    margin: 50px 60px;
+}
+div.admin_status{
+    display: flex;
+}
+div.admin_status > .admin{
+    margin: 10px 10px;
+    padding-top: 10px;
+}
+div.admin_status > .date{
+    margin: 10px 10px;
+    padding-top: 10px;
+}
+div.admin_contents{
+    margin: 10px 0px;
+    padding: 0px 1px 20px 30px;
+    border-bottom: 1px solid #D8D8D8;
+}
+div.sb{
+    width: 770px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 5px;
+}
+div.sb > .qna_rightBtn{
+    display: flex;
+}
+div.sb > div > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.sb > div > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.sb > .qna_rightBtn > .qnaView_modify > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #333333;
+    cursor: pointer;
+}
+div.sb > .qna_rightBtn > .qnaView_modify > a > button:hover{
+	color: black;
+	border: 1px solid #e8e8e8;
+	background-color: white;
+	transition: all 0.4s ease-in-out
+}
+div.sb > .qna_rightBtn > .qnaView_delete > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+    margin-right: 5px
+}
+div.sb > .qna_rightBtn > .qnaView_delete > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}

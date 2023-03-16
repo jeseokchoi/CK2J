@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#userManage{
+	width: 1080px;
+	margin: auto;
+}
+.userManage_head{
+text-align: center;
+}
+.userManage_head h1{
+font-size: 40px;
+}
+	table {
+		width: 1080px;
+		border: 2px solid black;
+		border-collapse: collapse;
+		margin: auto;
+		font-size: 13px;
+		text-align: center;
+	}
+	th, td{
+		width: 100px;
+		border: 1px solid #D4D4D4;
+	}
+	th:nth-child(4){
+	width: 150px;
+	}
+	td:nth-child(4){
+	width: 150px;
+	}
+	th:nth-child(6){
+	width: 60px;
+	}
+	td:nth-child(6){
+	width: 60px;
+	}
+	.bold {
+		font-weight: bold;
+	}
+	.pageNumber {
+		margin-top: 20px;
+		text-align: center;
+	}
+	.search{
+	text-align: center;
+	margin-top: 20px;
+	}

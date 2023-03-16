@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.homeWindow {
+	width: 100%;
+	height: 100%;
+	/*         border: 1px solid pink;   */
+	display: flex;
+}
+
+.about_rightT {
+	/*     	margin: 20% 10% 10% 55%; */
+	font-family: 'Poppins', 'Nanum Square', 'Noto Sans KR', '맑은 고딕',
+		'Malgun Gothic', sans-serif;
+	color: #333;
+	font-size: 28px;
+	font-weight: 600;
+	letter-spacing: 0.00em;
+	margin-top: 10%;
+}
+
+.about_left {
+	float: left;
+	/* 	    display: table; */
+	width: 50%;
+	height: 100%;
+	table-layout: fixed;
+}
+
+.about_right {
+	float: right;
+	/* 	    display: table; */
+	width: 30%;
+	height: 100%;
+	table-layout: fixed;
+	text-align: center;
+	margin-top: 20%;
+}
+
+/*       임시!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/*        .about_right { */
+/* 		    float: right; */
+/* 		    /* display: table; */
+*
+/
+/* 		    width: 30%; */
+/* 		    height: 900px; */
+/* 		    table-layout: fixed; */
+/* 		    text-align: center; */
+/* 		    display: flex; */
+/* 		    margin: auto; */
+/* 		    flex-direction: column; */
+/* 		    justify-content: center; */
+/* 		    align-items: center; */
+/*        } */

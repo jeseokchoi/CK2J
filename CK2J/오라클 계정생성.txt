@@ -1,0 +1,14 @@
+1차
+
+su - oracle
+. oraenv
+sqlplus c##itbank/it@192.168.1.100:1521/xe
+
+
+===========================================
+2차
+
+conn/as sysdba;
+create user c##spn identified by spn;
+grant connect, resource, dba to c##spn;
+commit;

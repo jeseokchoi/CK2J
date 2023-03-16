@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.OrderDAO">
+	<select id="selectUserOrderList" resultType="userOrder">
+select 
+    UO.*,
+    UOD.*,
+    PO.*,
+    P.product_name
+from user_order UO
+	join (
+	    select 
+	        userOrder_detail.*, 
+	        rank() over(partition by user_order_idx order by userorder_detail_idx) rank, 
+	        count(*) over(partition by user_order_idx) as product_total_count
+	    from userOrder_detail) UOD
+	    on UO.user_order_idx = UOD.user_order_idx
+	join product_opt PO
+	    on UOD.product_opt_idx = PO.product_opt_idx
+	join product P
+	    on P.product_idx = PO.product_idx
+	    where UOD.rank = 1
+	    order by UO.user_order_idx desc
+	</select>
+	
+	<select id="selectNonuserOrderList" resultType="nonuser_order">
+		select 
+		    NUO.*,
+		    NUOD.*,
+		    PO.*,
+		    P.product_name
+		from nonuser_order NUO
+			join (
+			    select 
+			        nonuserOrder_detail.*, 
+			        rank() over(partition by nonuser_order_idx order by nonuserorder_detail_idx) rank, 
+			        count(*) over(partition by nonuser_order_idx) as product_total_count
+			    from nonuserOrder_detail) NUOD
+			    on NUO.nonuser_order_idx = NUOD.nonuser_order_idx
+			join product_opt PO
+			    on NUOD.product_opt_idx = PO.product_opt_idx
+			join product P
+			    on P.product_idx = PO.product_idx
+		where NUOD.rank = 1
+		order by NUO.nonuser_order_idx desc
+	</select>
+	
+	<select id="selectUserOrderTotal_price" resultType="int">
+		select sum(order_total_price)
+		from user_order
+	</select>
+	
+	<select id="selectUserOrderDetailList" parameterType="int" resultType="UserOrderDetail">
+		select UD.*,PO.*,P.*,(product_color || '/' || product_size) as product_opt
+		from userOrder_detail UD
+		    join  product_opt PO
+		    	on UD.product_opt_idx = PO.product_opt_idx
+		    join product P
+		    	on P.product_idx = PO.product_idx
+	    where ud.user_order_idx = ${orderIdx}
+	</select>
+	
+	<select id="selectNonuserOrderDetailList"  parameterType="int" resultType="nonuserOrderDetail">
+		select NUD.*,PO.*,P.*,(product_color || '/' || product_size) as product_opt
+		from nonuserOrder_detail NUD
+		    join  product_opt PO
+		    	on NUD.product_opt_idx = PO.product_opt_idx
+		    join product P
+		    	on P.product_idx = PO.product_idx
+	    where Nud.nonuser_order_idx = ${orderIdx}
+	</select>
+	
+	<insert id="insertUserOrder" parameterType="userOrder">
+		insert into user_order (user_id, address1, address2, address3, receiver_name, order_total_price, receiver_phone, status_for_admin)
+		values (#{user_id},#{address1},#{address2},#{address3},#{receiver_name},#{order_total_price},#{receiver_phone},'주문확인중')
+	</insert>
+	
+	<select id="selectOrderIdx" parameterType="string" resultType="int">
+		select user_order_idx 
+		from user_order 
+		where user_id = #{user_id}
+		order by user_order_idx desc
+		
+		fetch first 1 rows only
+	</select>
+	
+	<insert id="insertUserOrderDetail" parameterType="UserOrderDetail">
+		insert into userOrder_detail(product_opt_idx, user_order_idx, product_count, product_price) 
+		values(${product_opt_idx},${userOrder_idx},${product_count},${product_price})
+	</insert>
+	
+	<insert id="insertNonuserOrder" parameterType="nonuser_order">
+		insert into nonuser_order (address1, address2, address3, order_total_price, receiver_name, receiver_phone, nonuser_pwd, status_for_admin)
+		values (#{address1},#{address2},#{address3},#{order_total_price},#{receiver_name},#{receiver_phone},#{nonuser_pwd},'주문확인중') 
+	</insert>
+	
+	<select id="selectNonuserOrderIdx" parameterType="string" resultType="int">
+		select nonuser_order_idx 
+		from nonuser_order 
+		where nonuser_pwd = #{nonuser_pwd}
+		order by nonuser_order_idx desc
+		
+		fetch first 1 rows only
+	</select>
+	
+	<insert id="insertNonuserOrderDetail">
+		insert into nonuserOrder_detail(product_opt_idx, nonuser_order_idx, product_count, product_price) 
+		values(${product_opt_idx},${nonuser_order_idx},${product_count},${product_price})
+	</insert>
+	
+<!-- 	0228 제석 -->
+	<update id="updateStatusModify" parameterType="Hashmap">
+		update user_order
+		    set 
+		    	status_for_admin = #{status_for_admin}
+		    where 
+		    	user_order_idx = #{user_order_idx}
+	</update>
+	
+	<update id="updateNonuserStatusModify" parameterType="Hashmap">
+		update nonuser_order
+		    set 
+		    	status_for_admin = #{status_for_admin}
+		    where 
+		    	nonuser_order_idx = #{nonuser_order_idx}
+	</update>
+	
+	<update id="updateOrderdetailAll" parameterType="hashmap">
+		update userorder_detail
+    		set 
+    			order_detail_status = #{status_for_admin}
+    		where
+			    user_order_idx = #{user_order_idx}
+			   and 			    
+			    not order_detail_status like '%환불%'
+			    and
+			    not	order_detail_status like '%교환%'
+	</update>
+	
+	<update id="updateNonuserOrderdetailAll" parameterType="hashmap">
+		update nonuserorder_detail
+    		set 
+    			order_detail_status = #{status_for_admin}
+    		where
+			    nonuser_order_idx = #{nonuser_order_idx}
+			    and 			    
+			    not order_detail_status like '%환불%'
+			    and
+			    not	order_detail_status like '%교환%'
+	</update>
+	
+	<delete id="uolDelete" parameterType="int">
+		delete user_order
+			where user_order_idx = #{user_order_idx}
+	</delete>
+	
+	<update id="updateUserOrderDetail" parameterType="Hashmap">
+		update userorder_detail
+		    set 
+		    	order_detail_status= #{order_detail_status}
+		    where 
+		    	userOrder_detail_idx = #{userOrder_detail_idx}
+	</update>
+	
+	<update id="updateNonuserOrderDetail" parameterType="Hashmap">
+		update nonuserorder_detail
+		    set 
+		    	order_detail_status= #{order_detail_status}
+		    where 
+		    	nonuserOrder_detail_idx = #{nonuserOrder_detail_idx}
+	</update>
+	
+	<select id="selectUserReturnList" resultType="user_return">
+		select 
+			* 
+		from 
+			userorder_return 
+		order by 
+			userorder_return_idx desc
+	</select>
+	
+	<select id="selectNonuserReturnList" resultType="nonuser_return">
+		select 
+			* 
+		from 
+			nonuserorder_return 
+		order by 
+			nonuserorder_return_idx desc
+	</select>
+	
+</mapper>

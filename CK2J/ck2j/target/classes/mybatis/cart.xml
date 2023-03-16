@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.CartDAO">
+
+	<select id="selectCartListById" resultType="cart" parameterType="string">
+		select * from cart where cart_value=#{user_id}
+	</select>
+
+	<select id="selectProductOptOne" parameterType="int" resultType="product_opt">
+		select *
+    	from (
+    		select product_opt_idx, product_name, product_price, product_size, product_color
+        	from product P
+            	join product_opt O
+                	on
+            	P.product_idx = O.product_idx
+            where product_opt_idx = ${idx}) A
+            	
+            join cart B
+            	on
+            A.product_opt_idx = B.product_opt_idx;
+	</select>
+
+	<select id="selectForPurchaseDTOfromCart" parameterType="string" resultType="ForPurchase">
+	select
+		P.product_name as itemName,
+		P.product_idx as itemIdx,
+		p.product_price as itemEachPrice,
+		(p.product_price * sum(C.product_count)) as itemPrice,
+		sum(C.product_count) as itemAmount,
+		(product_color || '/' || product_size) as itemOpt,
+		PT.product_t_img
+	from
+		product P
+		join product_opt PO
+			on P.product_idx = PO.product_idx
+		join (select *
+				from product_t_img
+				where product_t_img like '%_t_1.%') PT
+			on P.product_idx = PT.product_idx
+		join (select *
+				from cart
+				where cart_value=#{user_id}) C
+			on C.product_opt_idx = PO.product_opt_idx
+	group by
+		P.product_name,
+		P.product_idx,
+		p.product_price,
+		(p.product_price * C.product_count),
+		C.product_count,
+		(product_color || '/' || product_size),
+		PT.product_t_img
+	</select>
+	
+	<delete id="deleteCartItem" parameterType="hashmap">
+		delete from cart where product_opt_idx = #{product_opt_idx} and cart_value=#{cart_value}
+	</delete>
+	
+	<select id="selectOptIdx" parameterType="string" resultType="int">
+		select product_opt_idx
+		from product_opt
+		where product_idx = ${itemIdx}
+			and product_color = #{itemColor}
+			and product_size = #{itemSize} 
+	</select>
+	
+	<select id="select_t_imgByIdx" parameterType="int" resultType="string">
+		select product_t_img 
+		from product_t_img 
+		where product_idx = ${itemIdx}
+		FETCH FIRST 1 ROWS ONLY
+	</select>
+	
+	<delete id="deleteBasket" parameterType="string">
+		delete cart where cart_value = #{user_id}
+	</delete>
+	
+	
+</mapper>	

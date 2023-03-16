@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.repository.UserDAO">
+
+	<select id="login" parameterType="user" resultType="user">
+		select * from userTable where user_id = #{user_id}
+		and user_pwd = #{user_pwd}
+	</select>
+
+	<insert id="insert" parameterType="user">
+		insert into userTable (user_id, user_pwd, user_name, user_birth,
+		user_gender, user_phone, user_email, email_check )
+		values
+		(#{user_id},#{user_pwd},#{user_name},#{user_birth},#{user_gender},#{user_phone},#{user_email},#{email_check})
+	</insert>
+
+	<select id="idDupCheck" parameterType="String" resultType="int">
+		select count(user_id) from userTable where user_id = #{inputId}
+	</select>
+
+	<select id="selectList" parameterType="String"
+		resultType="address">
+		select * from deliver_address where user_id = #{user_id}
+	</select>
+
+	<insert id="insertAddress" parameterType="address">
+		insert into deliver_address(user_id, user_address1, user_address2,
+		user_address3)
+		values (#{user_id}, #{user_address1}, #{user_address2}, #{user_address3})
+	</insert>
+
+	<select id="addressOne" parameterType="string"
+		resultType="address">
+		select * from deliver_address where user_id = #{userId}
+	</select>
+	<select id="selectOne" parameterType="String" resultType="user">
+		select * from userTable where user_id = #{user_id}
+	</select>
+
+	<update id="updateUser" parameterType="user">
+		<!-- update userTable set user_pwd = #{user_pwd} ,user_name=#{user_name},user_birth 
+			= #{user_birth}, user_gender = #{user_gender}, -->
+		<!-- user_phone = #{user_phone}, user_email = #{user_email}, email_check 
+			= #{email_check} where user_id = #{user_id} -->
+
+		update userTable
+
+		<set>
+
+			<if test="user_pwd != null and user_pwd != ''">user_pwd =
+				#{user_pwd},</if>
+			<if test="user_name != null and user_name != ''">user_name = #{user_name},</if>
+			<if test="user_phone != null and user_phone != ''">user_phone = #{user_phone},</if>
+			<if test="user_email != null and user_email != ''">user_email = #{user_email},</if>
+			<if test="email_check != null and email_check != ''">email_check = #{email_check},</if>
+			<if test="user_role != null and user_role != ''">user_role = #{user_role},</if>
+			<if test="user_grade != null and user_grade != ''">user_grade = #{user_grade},</if>
+			<if test="user_birth != null">user_birth = #{user_birth},</if>
+			<if test="user_gender != null and user_gender != ''">user_gender = #{user_gender},</if>
+		</set>
+
+		where user_id = #{user_id}
+
+	</update>
+
+	<select id="getCount" resultType="int">
+		select count (*) from userTable
+	</select>
+
+	<select id="selectAll" resultType="user" parameterType="hashmap">
+		select
+		* from userTable
+		order by user_idx desc
+		offset #{offset} rows
+		fetch first #{perPage} rows only
+	</select>
+
+	<update id="addressModify" parameterType="address">
+		update deliver_address set user_address1 = #{user_address1}, user_address2 =
+		#{user_address2}, user_address3 = #{user_address3}
+		where user_id = #{user_id}
+	</update>
+	<select id="getOrderList" resultType="userOrder"
+		parameterType="String">
+		select
+
+		UO.user_order_idx,
+		UO.order_date,
+		UO.receiver_name,
+		UO.address1,
+		UO.address2,
+		UO.address3,
+		UO.order_total_price,
+
+
+		P.product_name,
+		P.product_idx,
+		P.product_price,
+		T.product_t_img,
+
+		UOD.product_count,
+		UOD.userOrder_detail_idx,
+		UOD.order_detail_status,
+
+
+		PO.product_size,
+		PO.product_color,
+		PO.product_opt_idx,
+
+		UT.user_name
+
+		from user_order UO
+
+		join userTable UT
+		on UT.user_id = UO.user_id
+
+		join userOrder_detail UOD
+		on UO.user_order_idx = UOD.user_order_idx
+
+		join product_opt PO
+		on UOD.product_opt_idx = PO.product_opt_idx
+
+		join product P
+		on PO.product_idx = P.product_idx
+
+		join product_t_img T
+		on P.product_idx = T.product_idx
+
+		WHERE UT.user_id = #{user_id} 
+		
+		order by user_order_idx desc
+
+	</select>
+
+	<!-- <select id="getOrderList" resultType="userOrder" parameterType="String"> -->
+	<!-- select uo.user_order_idx,uod.product_opt_idx,uod.order_detail_status,p.product_idx,uo.order_date,uod.product_count,p.product_name,uo.address1,uo.address2,uo.address3, 
+		uo.order_total_price,t.product_t_img from user_order UO -->
+	<!-- join userOrder_detail UOD -->
+	<!-- on uo.user_order_idx = UOD.user_order_idx -->
+	<!-- join product_opt PO -->
+	<!-- on uod.product_opt_idx = po.product_opt_idx -->
+	<!-- join product P -->
+	<!-- on po.product_idx = p.product_idx -->
+	<!-- join product_t_img T -->
+	<!-- on p.product_idx = t.product_idx -->
+
+	<!-- WHERE uo.user_id = #{user_id} -->
+	<!-- </select> -->
+
+	<select id="selectSearchUserList" parameterType="hashmap"
+		resultType="user">
+		select
+		* from userTable
+		where ${type} like '%${keyword}%'
+		order by user_idx desc
+		offset #{offset} rows
+		fetch first #{perPage} rows only
+	</select>
+
+	<select id="getCount2" resultType="int" parameterType="hashmap">
+		select count (*) from userTable where ${type} like '%${keyword}%'
+	</select>
+
+	<!-- ==========================0226=================================================================== -->
+	<select id="find_id" parameterType="user" resultType="user">
+		select user_id,user_email, user_name from userTable where user_name = #{user_name} and user_email
+		= #{user_email} and user_phone = #{user_phone}
+	</select>
+
+	<select id="find_pwd" parameterType="user" resultType="user">
+		select user_id, user_email from userTable where user_id = #{user_id} and
+		user_name=#{user_name} and user_email =#{user_email}
+	</select>
+
+	<update id="chanagePwd" parameterType="hashmap">
+		update userTable set user_pwd = #{user_pwd} where user_id = #{user_id}
+	</update>
+
+
+
+	<!-- 새봄 교환쿼리 연결 2/19 -->
+	<select id="selectOneProduct" resultType="userOrder"
+		parameterType="int">
+
+		select
+		<!-- N_O_R.order_return_status, -->
+		P_I.product_t_img,
+
+		P.product_name,
+		P.product_idx,
+		p.product_price,
+
+		P_O.product_opt_idx,
+		P_O.product_color,
+		P_O.product_size,
+
+		UT.user_name,
+
+		U_D.userOrder_detail_idx,
+		U_D.order_detail_status,
+
+		U_D.user_order_idx,
+		U_D.product_count,
+
+
+		<!-- U_O.user_order_status, -->
+		U_O.order_date,
+		U_O.receiver_name
+
+		from product P
+
+		join product_opt P_O
+		on P.product_idx = P_O.product_idx
+
+		join userOrder_detail U_D
+		on P_O.product_opt_idx = U_D.product_opt_idx
+
+		<!-- join NonuserOrder_return N_O_R -->
+		<!-- on 1=1 -->
+
+		join user_order U_O
+		on U_O.user_order_idx = U_D.user_order_idx
+
+		join userTable UT
+		on UT.user_id = U_O.user_id
+
+		join product_t_img P_I
+		on P.product_idx = P_I.product_idx
+
+		where
+
+		<!-- P.product_idx = #{P.product_idx} -->
+		<!-- and -->
+		<!-- P_O.product_opt_idx= #{product_opt_idx} and -->
+		U_D.userOrder_detail_idx = #{userOrder_detail_idx}
+
+
+
+
+	</select>
+
+
+	<update id="userUpdate" parameterType="userOrder">
+
+		update userOrder_detail
+		set
+		product_opt_idx = (select product_opt_idx from product_opt
+		where
+		product_idx = #{product_idx} and
+		product_color = #{product_color} and
+		product_size = #{product_size}),
+		order_detail_status ='교환진행중'
+		where
+		userOrder_detail_idx = #{userOrder_detail_idx}
+
+	</update>
+	
+	
+	<!-- 2/26 새봄 교환사유 추가!!!!!!!!!!!!!!!!!!!!!!!! -->	
+	
+	<insert id="userUpdate2" parameterType="nonuser_join">
+
+		insert into userOrder_return
+
+		(userOrder_detail_idx,
+		returnType,
+		return_reason
+		)
+
+		values (
+		#{userOrder_detail_idx},
+		'교환',
+		#{return_reason}
+		)
+
+
+	</insert>
+
+
+	<insert id="userInsert" parameterType="user_return">
+		insert into userorder_return
+		(userOrder_detail_idx,
+		returnType,
+		return_reason,
+		bankName,
+		bankAccountName,
+		bankAccountNumber
+		)
+		values (
+		#{userOrder_detail_idx},
+		'환불',
+		#{return_reason},
+		#{bankName},
+		#{bankAccountName},
+		#{bankAccountNumber}
+		)
+	</insert>
+
+	<insert id="userRefundUpdate">
+
+		update userOrder_detail
+		set
+		order_detail_status = '환불진행중'
+		where
+		userOrder_detail_idx = #{userOrder_detail_idx}
+
+	</insert>
+
+
+
+	<delete id="user_order_listDelete" parameterType="int">
+		delete from user_order where user_Order_idx = #{user_Order_idx}
+	</delete>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from userTable where user_id = #{user_id}
+	</delete>
+
+	<select id="selectOrderIdx" parameterType="int" resultType="int">
+		select 
+			user_order_idx
+		from 
+			userorder_detail
+		where 
+			userorder_detail_idx =${userOrder_detail_idx}
+	</select>
+	
+	<update id="updateStatusForAdmin" parameterType="int">
+		update 
+			user_order 
+		set 
+			status_for_admin = '변경있음' 
+		where 
+			user_order_idx = ${idx}
+	</update>
+</mapper>

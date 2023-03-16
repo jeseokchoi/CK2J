@@ -1,0 +1,278 @@
+@charset "utf-8";
+
+div.wrap {
+    width: 1000px;
+    margin: auto;
+}
+div#qna_title {
+	display: flex;
+	width: 550px;
+	margin: 20px 200px;
+	justify-content: center;
+}
+div#root{
+    width: 770px;
+    margin: auto;
+}
+div.qnaView_title{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_title > .qna_title{
+    margin: 15px 50px 10px 50px;
+}
+div.qnaView_title > .qna_title2{
+    margin: 10px 50px 10px 50px;
+    font-size: 20px;
+}
+div.qnaView_writer{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_writer > .qna_writer{
+    margin: 10px 50px 10px 50px;
+}
+div.qnaView_writer > .qna_writer2{
+    margin: 10px 50px 10px 35px;
+}
+div.qnaView_date{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+}
+div.qnaView_date > .qna_date{
+    margin: 10px 50px 10px 50px;
+}
+div.qnaView_date > .qna_date2{
+    margin: 10px 50px 10px 35px;
+}
+div.qnaView_content{
+    display: flex;
+    border-top: 1px solid #D8D8D8;
+    border-bottom: 1px solid #D8D8D8;
+}
+div.qnaView_content > .qna_content{
+    margin: 50px 60px;
+}
+div.adQna_reply {
+    width: 770px;
+    margin: auto;
+}
+div.adQna_replyWrite {
+    width: 600px;
+    margin: auto;
+    margin-top: 10px;
+}
+div.adQna_replyWrite > form > .adreply_write > textarea {
+    width: 600px;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 100px;
+    max-height: 100px;
+}
+div.adQna_replyWrite > form > .adreply_submit {
+    display: flex;
+    justify-content: end;
+}
+div.adQna_replyWrite > form > .adreply_submit > button {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.adQna_replyWrite > form > .adreply_submit > button:hover {
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div#replyModify {
+    width: 600px;
+    margin: auto;
+    margin-top: 10px;
+}
+div#replyModify > .adreply_modi {
+    width: 600px;
+    margin: auto;
+    margin-top: 10px;
+}
+div#replyModify > .adreply_modi > textarea {
+    width: 600px;
+    min-width: 600px;
+    max-width: 600px;
+    min-height: 100px;
+    max-height: 100px;
+}
+div#replyModify > .admodi_submit {
+    display: flex;
+    justify-content: end;
+} 
+div#replyModify > .admodi_submit > .reply_modify {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #333333;
+    cursor: pointer;
+    margin-right: 5px;
+}
+div#replyModify > .admodi_submit > .reply_modify:hover {
+    color: black;
+	border: 1px solid #e8e8e8;
+	background-color: white;
+    transition: all 0.4s ease-in-out;
+}
+div#replyModify > .admodi_submit > .rollback {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div#replyModify > .admodi_submit > .rollback:hover {
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.reply{
+    display: flex;
+}
+div.reply .left {
+	display: flex;
+}
+div.reply .writer{
+    margin: 10px 10px;
+    padding-top: 10px;
+}
+div.reply .writedate{
+    margin: 10px 10px;
+    padding-top: 10px;
+}
+div.reply .content{
+    margin: 10px 0px;
+    padding: 0px 1px 20px 30px;
+}
+div.reply .right{
+	width: 770px;
+	padding-bottom: 15px;
+    border-bottom: 1px solid #D8D8D8;	
+}
+div.reply .modify {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.reply .modify:hover {
+	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.reply .delete {
+	display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.reply .delete:hover {
+	color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}
+div.sb{
+    width: 770px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 10px;
+}
+div.sb > div > a > button{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 2px 8px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    width: 80px;
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+div.sb > div > a > button:hover{
+    color: white;
+	border: 1px solid grey;
+	background-color: #6E6E6E;
+}

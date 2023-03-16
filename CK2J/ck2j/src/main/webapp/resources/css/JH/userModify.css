@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+#userModify{
+	width: 1080px;
+	margin: auto;
+	}
+	.userModify_head{
+	text-align: center;	
+	}
+	.userModify_head h1{
+	font-size: 40px;
+	}
+	.userModify_body{
+	width: 310px;
+	margin: auto;
+	}
+	.userModify_content{
+	display: flex;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #C4C4C4;
+	}
+	.userModify_th{
+	width: 100px;
+	height: 30px;
+	}
+	.userModify_td{
+		width: 200px;
+		height: 30px;
+	}
+	.userModify_submit input{
+	width: 100px;
+	height: 30px;
+	background-color: #333333;
+	color: white;
+	margin: auto;
+	border-radius: 10px;
+	margin-left: 100px;
+	}
+	.userModify_submit input:hover {
+	background-color: #eeeeee;
+	color: #333333;
+	transition: 0.12s;
+	cursor: pointer;
+	}

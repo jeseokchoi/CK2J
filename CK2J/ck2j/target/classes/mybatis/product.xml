@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.repository.ProductDAO">
+
+	<select id="selectList" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_code like '${cat}%' and delete_check='n'
+			order by product_idx desc
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	<select id="selectProductListAll" resultType="product">
+		select *
+		from product P
+        join (select product_t_img as product_t_imgOne, product_idx
+                from product_t_img
+                where product_t_img like '%_t_1.%') T
+            on P.product_idx = T.product_idx
+            where delete_check='n'
+            order by p.product_idx
+	</select>
+	
+	<select id="selectProductOpt" resultType="product_opt">
+		select *
+		from product_opt
+		where product_idx=${productIdx}
+		order by product_opt_idx
+	</select>
+
+	<select id="selectSearchProductList" parameterType="hashmap" resultType="product">
+		select *
+		from product P
+        join (select product_t_img as product_t_imgOne, product_idx
+                from product_t_img
+                where product_t_img like '%_t_1.%') T
+            on P.product_idx = T.product_idx
+            where product_name like '%${product_name}%'
+            and delete_check='n'
+            order by p.product_idx
+	</select>
+	
+	<select id="select_t_img" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_code like '${cat}%' and product_t_img like '%_t_1.%'
+		order by P.product_idx desc
+		
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+
+	<select id="selectOne" resultType="product" parameterType="int">
+		select *
+		from product
+		where product_idx = ${idx}
+	</select>
+	
+	<select id="selectTImgList" resultType="string" parameterType="int">
+		select *
+		from product_t_img
+		where product_idx = ${idx}
+	</select>
+	
+	<select id="selectDImgList" resultType="string" parameterType="int">
+		select *
+		from product_d_img
+		where product_idx = ${idx}
+	</select>
+	
+	<insert id="insertProductDTO" parameterType="product">
+		insert into product(product_code,product_name,product_price)
+		values(#{product_code}, #{product_name}, #{product_price})
+	</insert>
+	
+	<select id="selectProductIdx" parameterType="product" resultType="int">
+		select product_idx
+		from product
+		where product_name = #{product_name}
+	</select>
+	
+	<insert id="insertTImg" parameterType="hashmap">
+		insert into product_t_img
+		values(#{fileName}, ${product_idx})
+	</insert>
+	
+	<insert id="insertDImg" parameterType="hashmap">
+		insert into product_d_img
+		values(#{fileName}, ${product_idx})
+	</insert>
+
+	<select id="selectOpt" resultType="product_opt" parameterType="hashmap">
+		select *
+		from product_opt
+		where product_idx = ${product_idx} and product_color = #{color}
+	</select>
+	
+	<select id="selectHomeList" resultType="product_t_img">
+		select * 
+        from product_t_img
+        where product_t_img like '%_t_1.%'
+        order by product_idx desc
+        
+        fetch first 4 rows only
+	</select>
+
+	<select id="selectProductColorOpt" parameterType="int" resultType="string">
+		select product_color 
+		from product_opt
+		where product_idx=${idx}
+		group by product_color
+	</select>
+
+	<select id="selectProductSizeOpt" parameterType="int" resultType="string">
+		select product_size 
+		from product_opt
+		where product_idx=${idx}
+		group by product_size
+	</select>
+
+	<insert id="insertProductOpt" parameterType="hashmap">
+		insert into product_opt
+		(product_idx,product_size,product_color,product_stock) 
+		values(${idx},#{size},#{color},0)
+	</insert>
+	
+	<update id="updateProduct" parameterType="product">
+		update product
+		set product_code=#{product_code},product_name=#{product_name},product_price=#{product_price}
+		where product_idx=${product_idx}
+	</update>
+	
+	<update id="updateProduct_opt" parameterType="hashmap">
+		update product_opt
+		set product_stock = ${count}
+        where product_idx = ${product_idx} and product_color = #{color} and product_size = #{size}
+	</update>
+
+	<delete id="deleteProductOpt" parameterType="int">
+			delete product_opt 
+			where product_idx=${idx} 
+	</delete>
+	
+	<delete id="deleteTImg" parameterType="int">
+		delete product_t_img
+		where product_idx=${idx}
+	</delete>
+
+	<delete id="deleteDImg" parameterType="int">
+		delete product_d_img
+		where product_idx=${idx}
+	</delete>
+	
+	<update id="deleteProduct" parameterType="int">
+		update product
+		set delete_check = 'y'
+		where product_idx = ${idx}
+	</update>
+	
+	<select id="getCount" resultType="int">
+		select count(product_idx) from product where product_code like '${cat}%' and delete_check='n'
+	</select>
+	
+	<select id="selectOneProductOpt" resultType="int" parameterType="hashmap">
+		select product_opt_idx
+        from product_opt 
+        where product_idx = #{product_idx} and product_color = #{color} and product_size=#{size}	
+	</select>
+	
+	<insert id="insertCart" parameterType="hashmap">
+		insert into cart(product_opt_idx, cart_value, product_count) values (#{product_opt_idx}, #{cart_value}, #{product_count})
+	</insert>
+	
+	<select id="selectProductOptOne" parameterType="hashmap" resultType="int">
+		select product_opt_idx from product_opt where product_idx = #{product_idx} and product_color = #{color} and product_size = #{size}
+	</select>
+	
+	<select id="selectListSortByLowPrice" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_code like '${cat}%'
+			order by product_price
+			
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+
+	<select id="select_t_imgSortByLowPrice" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_code like '${cat}%' and product_t_img like '%_t_1.%'
+		order by P.product_price
+		
+		offset ${offset} rows
+		fetch first ${perPage} rows only
+	</select>
+	
+	<select id="selectListSortByhighPrice" resultType="product" parameterType="hashmap">
+		select * from 
+			product
+		where product_code like '${cat}%'
+			order by product_price desc
+			
+		offset ${offset} rows
+			fetch first ${perPage} rows only
+	</select>
+	
+	<select id="select_t_imgSortByhighPrice" resultType="string" parameterType="hashmap">
+		select product_t_img
+		from product P
+    		join product_t_img T
+        		on 
+    		P.product_idx = T.product_idx
+		where product_code like '${cat}%' and product_t_img like '%_t_1.%'
+		order by P.product_price desc
+		
+		offset ${offset} rows
+		fetch first ${perPage} rows only
+	</select>
+	
+	
+	<select id="selectProduct_t_img_one" parameterType="int" resultType="string">
+		select product_t_img
+		from product_t_img
+		where product_idx = ${itemIdx} and product_t_img like '%_t_1.%'
+	</select>
+</mapper>

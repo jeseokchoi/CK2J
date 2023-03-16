@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itbank.repository.Nonuser_orderDAO">
+
+	<select id="login" parameterType="nonuser_order"
+		resultType="nonuser_order">
+		select * from nonuser_order
+		where
+		receiver_name = #{receiver_name}
+		and nonuser_order_idx = #{nonuser_order_idx}
+		and nonuser_pwd = #{nonuser_pwd}
+
+	</select>
+
+	<select id="getList" resultType="nonuser_join"
+		parameterType="nonuser_order">
+		select
+
+		P.product_name,
+		P.product_idx,
+		p.product_price,
+		P_I.product_t_img,
+
+		<!-- dto.order_detail_status -->
+
+
+		P_O.product_opt_idx,
+		P_O.product_color,
+		P_O.product_size,
+
+		N_D.order_detail_status,
+		N_D.nonuserOrder_detail_idx,
+		N_D.product_count,
+
+		<!-- N_O.nonuser_order_status, -->
+		N_O.nonuser_order_idx,
+		N_O.order_date,
+		N_O.receiver_name,
+		N_O.address1,
+		N_O.address2,
+		N_O.address3,
+		N_O.order_total_price
+
+
+		from product P
+
+		join product_opt P_O
+		on P.product_idx = P_O.product_idx
+
+		join nonuserOrder_detail N_D
+		on P_O.product_opt_idx = N_D.product_opt_idx
+
+		join nonuser_order N_O
+		on N_O.nonuser_order_idx = N_D.nonuser_order_idx
+
+		join product_t_img P_I
+		on P.product_idx = P_I.product_idx
+
+		where
+
+		N_O.nonuser_order_idx =${nonuser_order_idx}
+
+		order by N_O.nonuser_order_idx  desc
+		<!-- N_D.nonuserOrder_detail_idx = 1; -->
+
+	</select>
+
+
+	<!-- <select id="getList" resultType="nonuser_join" parameterType="nonuser_order"> -->
+	<!-- select -->
+
+
+	<!-- P_I.product_t_img, -->
+
+	<!-- P.product_name, -->
+	<!-- P.product_idx, -->
+	<!-- p.product_price, -->
+
+	<!-- P_O.product_opt_idx, -->
+	<!-- P_O.product_color, -->
+	<!-- P_O.product_size, -->
+
+
+	<!-- N_D.order_detail_status, -->
+	<!-- N_D.nonuserOrder_detail_idx, -->
+
+
+	<!-- N_D.product_count, -->
+	<!-- N_D.product_price, -->
+
+	<!-- N_O.nonuser_order_status, -->
+	<!-- N_O.order_date, -->
+	<!-- N_O.receiver_name, -->
+	<!-- N_O.nonuser_order_idx -->
+
+	<!-- from product P -->
+
+	<!-- join product_opt P_O -->
+	<!-- on P.product_idx = P_O.product_idx -->
+
+	<!-- join nonuserOrder_detail N_D -->
+	<!-- on P_O.product_opt_idx = N_D.product_opt_idx -->
+
+	<!-- join NonuserOrder_return N_O_R -->
+	<!-- on 1=1 -->
+
+	<!-- join nonuser_order N_O -->
+	<!-- on N_O.nonuser_order_idx = N_D.nonuser_order_idx -->
+
+	<!-- join product_t_img P_I -->
+	<!-- on P.product_idx = P_I.product_idx -->
+
+	<!-- where -->
+	<!-- N_O.nonuser_order_idx =${nonuser_order_idx} -->
+	<!-- 기존 list -->
+	<!-- </select> -->
+
+
+	<select id="selectOneProduct" resultType="nonuser_join"
+		parameterType="int">
+
+		select
+		<!-- N_O_R.order_return_status, -->
+		P_I.product_t_img,
+
+		P.product_name,
+		P.product_idx,
+		p.product_price,
+
+		P_O.product_opt_idx,
+		P_O.product_color,
+		P_O.product_size,
+
+		N_D.nonuserOrder_detail_idx,
+		N_D.order_detail_status,
+
+		N_D.nonuser_order_idx,
+		N_D.product_count,
+
+
+		<!-- N_O.nonuser_order_status, -->
+		N_O.order_date,
+		N_O.receiver_name
+
+		from product P
+
+		join product_opt P_O
+		on P.product_idx = P_O.product_idx
+
+		join nonuserOrder_detail N_D
+		on P_O.product_opt_idx = N_D.product_opt_idx
+
+		<!-- join NonuserOrder_return N_O_R -->
+		<!-- on 1=1 -->
+
+		join nonuser_order N_O
+		on N_O.nonuser_order_idx = N_D.nonuser_order_idx
+
+		join product_t_img P_I
+		on P.product_idx = P_I.product_idx
+
+		where
+
+		<!-- P.product_idx = #{P.product_idx} -->
+		<!-- and -->
+		<!-- P_O.product_opt_idx= #{product_opt_idx} and -->
+		N_D.nonuserOrder_detail_idx = #{nonuserOrder_detail_idx}
+
+
+
+
+	</select>
+
+
+	<!-- 쌤꺼 쿼리 업데이트로 얘기 -->
+
+	<update id="update" parameterType="nonuser_join">
+
+		update nonuserorder_detail
+		set
+		product_opt_idx = (select product_opt_idx from product_opt
+		where
+		product_idx = #{product_idx} and
+		product_color = #{product_color} and
+		product_size = #{product_size}),
+		order_detail_status = '교환진행중'
+		where
+		nonuserOrder_detail_idx = #{nonuserOrder_detail_idx}
+
+	</update>
+
+	<insert id="insert1" parameterType="nonuser_return">
+		insert into nonuserOrder_return
+		(nonuserOrder_detail_idx,
+		returnType,
+		return_reason,
+		bankName,
+		bankAccountName,
+		bankAccountNumber
+		)
+		values (
+		#{nonuserOrder_detail_idx},
+		'환불',
+		#{return_reason},
+		#{bankName},
+		#{bankAccountName},
+		#{bankAccountNumber}
+		)
+	</insert>
+
+	<update id="nonuserRefundUpdate" parameterType="nonuser_return">
+
+
+		update nonuserOrder_detail
+		set
+		order_detail_status = '환불진행중'
+		where
+		nonuserOrder_detail_idx = #{nonuserOrder_detail_idx}
+
+
+	</update>
+
+	<delete id="nonuser_order_listDelete" parameterType="int">
+
+		delete from nonuser_order where nonuser_order_idx =
+		#{nonuser_order_idx}
+
+	</delete>
+
+
+
+<!-- 2/26 새봄 교환사유 추가!!!!!!!!!!!!!!!!!!!!!!!! -->	
+
+	<insert id="update2" parameterType="nonuser_join">
+
+		insert into nonuserOrder_return
+
+		(nonuserOrder_detail_idx,
+		returnType,
+		return_reason
+		)
+
+		values (
+		#{nonuserOrder_detail_idx},
+		'교환',
+		#{return_reason}
+		)
+
+
+	</insert>
+
+	<select id="selectOrderIdx" parameterType="int" resultType="int">
+		select 
+			nonuser_order_idx
+		from 
+			nonuserorder_detail
+		where 
+			nonuserorder_detail_idx =${nonuserOrder_detail_idx}
+	</select>
+
+	<update id="updateStatusForAdmin" parameterType="int">
+		update 
+			nonuser_order 
+		set 
+			status_for_admin = '변경있음' 
+		where 
+			nonuser_order_idx = ${idx}
+	</update>
+
+</mapper>
+	
+	
